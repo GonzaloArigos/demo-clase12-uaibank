@@ -13,7 +13,7 @@ function validateAmount(value) {
   if (!Number.isFinite(number)) return 'Ingresá un monto válido.';
   if (number === 0) return 'El monto no puede ser cero.';
   if (number < 0) return 'El monto no puede ser negativo.';
-  if (number < 5) return 'El monto mínimo para transferir es de $5,00.';
+  if (number < 100) return 'El monto mínimo para transferir es de $100,00.';
   if (number > Number.MAX_SAFE_INTEGER / 100) return 'El monto ingresado es demasiado grande.';
   return '';
 }
