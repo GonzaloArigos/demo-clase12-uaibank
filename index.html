@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="UAIBank: simulador de transferencias bancarias.">
+  <title>Transferir · UAIBank</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header"><a class="brand" href="./" aria-label="UAIBank, inicio"><span class="brand-mark">UAI</span>Bank</a><span class="demo"><span></span> MODO DEMO</span></header>
+  <main>
+    <div class="intro"><span class="eyebrow">TU BANCA, MÁS SIMPLE</span><h1>UAI Bank</h1><p>Transferí de forma simple, estés donde estés.</p></div>
+    <section class="transfer-card" aria-labelledby="transfer-title">
+      <div class="card-heading"><span class="transfer-icon" aria-hidden="true">↗</span><div><h2 id="transfer-title">Nueva transferencia</h2><p>Completá los datos para empezar.</p></div></div>
+      <form id="transfer-form" novalidate>
+        <label for="destination">Alias o CBU</label>
+        <input id="destination" name="destination" type="text" placeholder="Ej.: nombre.apellido.banco" autocomplete="off" spellcheck="false" aria-describedby="destination-error" required>
+        <p class="error" id="destination-error"></p>
+        <label for="amount">Monto a transferir</label>
+        <div class="amount-field"><span aria-hidden="true">$</span><input id="amount" name="amount" type="text" inputmode="decimal" placeholder="0,00" autocomplete="off" aria-describedby="amount-hint amount-error" required><span class="currency">ARS</span></div>
+        <p class="hint" id="amount-hint">El monto mínimo es de $5,00.</p><p class="error" id="amount-error"></p>
+        <div class="summary"><span>Comisión por transferencia</span><strong>Sin costo</strong></div>
+        <button type="submit" id="transfer-button">Transferir <span aria-hidden="true">↗</span></button>
+      </form>
+      <div id="receipt" class="receipt" role="status" hidden><span class="success-icon" aria-hidden="true">✓</span><h2>¡Transferencia simulada!</h2><p>Enviaste <strong id="receipt-amount"></strong> a</p><strong id="receipt-destination" class="receipt-destination"></strong><p class="receipt-note">La simulación se completó correctamente.<br>No se movió dinero real.</p><button id="new-transfer" type="button">Hacer otra transferencia <span aria-hidden="true">↗</span></button></div>
+      <div class="card-footer"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Tu tranquilidad, siempre primero.</div>
+    </section>
+    <p class="disclaimer">Esto es una simulación. No se realizan transferencias reales.</p>
+  </main>
+  <footer class="page-footer"><span>UAIBank · Hacelo simple.</span><span>Hecho para ir con vos.</span></footer>
+</body>
+</html>
