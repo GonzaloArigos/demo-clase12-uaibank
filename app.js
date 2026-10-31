@@ -3,7 +3,19 @@ const destination = document.querySelector('#destination');
 const amount = document.querySelector('#amount');
 const receipt = document.querySelector('#receipt');
 const heading = document.querySelector('.card-heading');
-const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' });
+const currency = document.querySelector('#currency');
+const currencies = {
+  ARS: { minimum: 100, minimumLabel: '$100,00' },
+  USD: { minimum: 10, minimumLabel: '10 USD' },
+};
+
+function updateCurrency() {
+  document.querySelector('#amount-currency').textContent = currency.value;
+  document.querySelector('#amount-hint').textContent = `El monto mínimo es de ${currencies[currency.value].minimumLabel}.`;
+  showError(amount, amount.value.trim() ? validateAmount(amount.value) : '');
+}
+
+currency.addEventListener('change', updateCurrency);
 
 function validateAmount(value) {
   const text = value.trim();
@@ -13,7 +25,8 @@ function validateAmount(value) {
   if (!Number.isFinite(number)) return 'Ingresá un monto válido.';
   if (number === 0) return 'El monto no puede ser cero.';
   if (number < 0) return 'El monto no puede ser negativo.';
-  if (number < 100) return 'El monto mínimo para transferir es de $100,00.';
+  const selectedCurrency = currencies[currency.value];
+  if (number < selectedCurrency.minimum) return `El monto mínimo para transferir es de ${selectedCurrency.minimumLabel}.`;
   if (number > Number.MAX_SAFE_INTEGER / 100) return 'El monto ingresado es demasiado grande.';
   return '';
 }
@@ -37,6 +50,7 @@ form.addEventListener('submit', (event) => {
     (destinationError ? destination : amount).focus();
     return;
   }
+  const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: currency.value });
   document.querySelector('#receipt-amount').textContent = money.format(Number(amount.value.trim().replace(',', '.')));
   document.querySelector('#receipt-destination').textContent = destination.value.trim();
   form.hidden = true;
@@ -48,6 +62,7 @@ form.addEventListener('submit', (event) => {
 
 document.querySelector('#new-transfer').addEventListener('click', () => {
   form.reset();
+  updateCurrency();
   receipt.hidden = true;
   form.hidden = false;
   heading.hidden = false;

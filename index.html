@@ -18,9 +18,11 @@
         <label for="destination">Alias o CBU</label>
         <input id="destination" name="destination" type="text" placeholder="Ej.: nombre.apellido.banco" autocomplete="off" spellcheck="false" aria-describedby="destination-error" required>
         <p class="error" id="destination-error"></p>
+        <label for="currency">Moneda</label>
+        <select id="currency" name="currency"><option value="ARS">Pesos argentinos (ARS)</option><option value="USD">Dólares estadounidenses (USD)</option></select>
         <label for="amount">Monto a transferir</label>
-        <div class="amount-field"><span aria-hidden="true">$</span><input id="amount" name="amount" type="text" inputmode="decimal" placeholder="0,00" autocomplete="off" aria-describedby="amount-hint amount-error" required><span class="currency">ARS</span></div>
-        <p class="hint" id="amount-hint">El monto mínimo es de $5,00.</p><p class="error" id="amount-error"></p>
+        <div class="amount-field"><span aria-hidden="true">$</span><input id="amount" name="amount" type="text" inputmode="decimal" placeholder="0,00" autocomplete="off" aria-describedby="amount-hint amount-error" required><span class="currency" id="amount-currency">ARS</span></div>
+        <p class="hint" id="amount-hint">El monto mínimo es de $100,00.</p><p class="error" id="amount-error"></p>
         <div class="summary"><span>Comisión por transferencia</span><strong>Sin costo</strong></div>
         <button type="submit" id="transfer-button">Transferir <span aria-hidden="true">↗</span></button>
       </form>
